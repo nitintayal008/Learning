@@ -1,1 +1,36 @@
+ErrorHandling in express js
+
+->we have built-in Error class in javascript which can be used to throw an error by bassing the error object in next
+eg: if(!product){
+        const err= new Error("Product Not Found");
+        err.statusCode= 404;
+        return next(err);
+     }
+
+->But if we want to more additional thing then we can make our custom ErrorHanler class by extending it from Error
+eg: class ErroHandler extends Error{
+    constructor(message,statusCode){
+        super(message);
+        this.statusCode=statusCode
+
+        Error.captureStackTrace(this,this.constructor)
+    }
+}
+
+module.exports = ErroHandler; 
+
+and we call this by 
+new Errorhandler 
+
+
+And in both above case we have to pass make ErrorMiddleware
+app.use((err,req,res,next)=>{
+    err.statusCode = err.statusCode || 500;
+    err.message = err.message || "Internal Server Error";
+
+    res.status(err.statusCode).json({
+        success:false,
+        error:err.message,
+    });
+})
 
