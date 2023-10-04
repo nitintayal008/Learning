@@ -1,1 +1,4 @@
 useMemo hook we used to memoizi the value as a cache and by doinf so we can improve the code effeciency of our project
+
+Higher-order function that accepts a function func as its parameter. 
+In JavaScript, a higher-order function is a function that takes one or more functions as arguments or returns a function.
